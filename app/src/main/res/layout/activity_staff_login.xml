@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_purple">
+    android:background="@color/light_orange">
 
-    <!-- Logo -->
+    <!-- Back Arrow -->
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="45dp"
+        android:src="@drawable/return_arrow"
+        android:contentDescription="Back"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        app:tint="@color/dark_grey" />
+
+    <!-- App Logo -->
     <TextView
         android:id="@+id/tvLogo"
         android:layout_width="wrap_content"
@@ -18,12 +32,12 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp" />
 
-    <!-- Title -->
+    <!-- Login Title -->
     <TextView
-        android:id="@+id/tvSignUpTitle"
+        android:id="@+id/tvLoginTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign Up"
+        android:text="Staff Login"
         android:textColor="@color/dark_grey"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -32,99 +46,73 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp" />
 
-    <!-- Full Name -->
-    <EditText
-        android:id="@+id/etFullName"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:hint="Firstname Lastname"
-        android:backgroundTint="@color/primary_purple"
-        android:textColor="@color/dark_grey"
-        android:textColorHint="@color/purple"
-        android:fontFamily="@font/prompt_regular"
-        android:layout_below="@id/tvSignUpTitle"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp" />
-
-    <!-- Email -->
+    <!-- Email Input Field -->
     <EditText
         android:id="@+id/etEmail"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:hint="name@example.com"
-        android:backgroundTint="@color/primary_purple"
-        android:textColor="@color/dark_grey"
-        android:textColorHint="@color/purple"
-        android:fontFamily="@font/prompt_regular"
+        android:hint="Email"
         android:inputType="textEmailAddress"
-        android:layout_below="@id/etFullName"
+        android:backgroundTint="@color/orange"
+        android:textColor="@color/dark_grey"
+        android:textColorHint="@color/orange"
+        android:fontFamily="@font/prompt_regular"
+        android:layout_below="@id/tvLoginTitle"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="24dp" />
 
-    <!-- Password -->
+    <!-- Password Input Field -->
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:hint="Password"
-        android:backgroundTint="@color/primary_purple"
-        android:textColor="@color/dark_grey"
-        android:textColorHint="@color/purple"
-        android:fontFamily="@font/prompt_regular"
         android:inputType="textPassword"
+        android:backgroundTint="@color/orange"
+        android:textColor="@color/dark_grey"
+        android:textColorHint="@color/orange"
+        android:fontFamily="@font/prompt_regular"
         android:layout_below="@id/etEmail"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp" />
 
-    <!-- Repeat Password -->
-    <EditText
-        android:id="@+id/etRepeatPassword"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:hint="Repeat Password"
-        android:backgroundTint="@color/primary_purple"
-        android:textColor="@color/dark_grey"
-        android:textColorHint="@color/purple"
-        android:fontFamily="@font/prompt_regular"
-        android:inputType="textPassword"
-        android:layout_below="@id/etPassword"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp" />
-
-    <!-- Submit Button -->
+    <!-- Login Button -->
     <Button
-        android:id="@+id/btnSignUp"
+        android:id="@+id/btnLogin"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Next"
-        android:backgroundTint="@color/primary_purple"
-        android:textColor="@color/white"
+        android:text="Log In"
+        android:backgroundTint="@color/orange"
+        android:textColor="@color/light_white"
         android:fontFamily="@font/prompt_regular"
-        android:layout_below="@id/etRepeatPassword"
+        android:layout_below="@id/etPassword"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp" />
 
-    <!-- Go back to LogIn -->
+    <!-- Forgot Password Link -->
     <TextView
-        android:id="@+id/tvAlreadyRegistered"
+        android:id="@+id/tvForgotPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Already registered?"
-        android:textColor="@color/purple"
+        android:text="Forgot Password?"
+        android:textColor="@color/orange"
+        android:textSize="14sp"
         android:fontFamily="@font/prompt_regular"
-        android:layout_below="@id/btnSignUp"
+        android:layout_below="@id/btnLogin"
         android:layout_alignParentStart="true"
         android:layout_marginStart="40dp"
         android:layout_marginTop="16dp" />
 
+    <!-- Sign Up Link -->
     <TextView
-        android:id="@+id/tvLogin"
+        android:id="@+id/tvSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Log In"
-        android:textColor="@color/primary_purple"
+        android:text="Sign Up"
+        android:textColor="@color/orange"
+        android:textSize="14sp"
         android:fontFamily="@font/prompt_regular"
-        android:layout_below="@id/btnSignUp"
+        android:layout_below="@id/btnLogin"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="40dp"
         android:layout_marginTop="16dp" />
@@ -135,7 +123,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/developed_by"
-        android:textColor="@color/primary_purple"
+        android:textColor="@color/orange"
         android:textSize="12sp"
         android:fontFamily="@font/prompt_regular"
         android:layout_alignParentBottom="true"

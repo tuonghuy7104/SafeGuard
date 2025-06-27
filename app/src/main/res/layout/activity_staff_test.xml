@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/light_purple">
+
+    <!-- Title -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Staff Data Test"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/dark_grey"
+        android:gravity="center"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Status Text -->
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Staff Information:\nEmail: tuonghuy7104@gmail.com\nPassword: 123456\nFull Name: Staff Tuong Huy\n\nUse the buttons below to test staff functionality."
+        android:textSize="16sp"
+        android:textColor="@color/dark_grey"
+        android:background="@drawable/rounded_corners"
+        android:padding="16dp"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Buttons Container -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="24dp">
+
+        <!-- Add Staff Data Button -->
+        <Button
+            android:id="@+id/btnAddStaff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Staff Data"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:backgroundTint="@color/orange"
+            android:textColor="@color/light_white"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Test Login Button -->
+        <Button
+            android:id="@+id/btnTestLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Test Staff Login"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:backgroundTint="@color/primary_purple"
+            android:textColor="@color/light_white"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Add Sample SOS Alerts Button -->
+        <Button
+            android:id="@+id/btnAddSampleAlerts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Sample SOS Alerts"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:backgroundTint="@color/orange"
+            android:textColor="@color/light_white"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Clear All Alerts Button -->
+        <Button
+            android:id="@+id/btnClearAlerts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Clear All Alerts"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:backgroundTint="@color/dark_grey"
+            android:textColor="@color/light_white" />
+
+    </LinearLayout>
+
+    <!-- Spacer to push back button to bottom -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- Back Button -->
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Back to Staff Login"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:backgroundTint="@color/primary_purple"
+        android:textColor="@color/light_white" />
+
+</LinearLayout>

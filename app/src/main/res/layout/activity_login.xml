@@ -122,7 +122,7 @@
         android:id="@+id/tvDeveloper"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Developed by Group "
+        android:text="@string/developed_by"
         android:textColor="@color/primary_purple"
         android:textSize="12sp"
         android:fontFamily="@font/prompt_regular"
