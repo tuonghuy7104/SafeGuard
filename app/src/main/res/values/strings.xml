@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">SafeGuard</string>
     <string name="welcome_message">Welcome to SafeGuard!</string>
+    <string name="slogan">Feel Safe, be Guarded</string>
     <string name="developed_by">Developed by Group 6</string>
     <string name="login_button">Log In</string>
     <string name="signup_button">Sign Up</string>
