@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/notification_item_bg"
+    android:layout_marginBottom="8dp">
+
+    <!-- User Info Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="8dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="User Name"
+                android:textColor="@color/dark_grey"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:id="@+id/tvUserEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="user@email.com"
+                android:textColor="@color/dark_grey"
+                android:textSize="14sp"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:id="@+id/tvTimestamp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2025-06-01 12:00:00"
+                android:textColor="@color/orange"
+                android:textSize="12sp"
+                android:textStyle="italic" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnDismiss"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="X"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:backgroundTint="@color/dark_grey"
+            android:textColor="@color/light_white"
+            android:layout_gravity="center_vertical" />
+    </LinearLayout>
+
+    <!-- Location Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/rounded_corners"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="📍 Location: "
+            android:textColor="@color/dark_grey"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvLocation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="10.762622, 106.660172"
+            android:textColor="@color/dark_grey"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/btnViewLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View"
+            android:textSize="12sp"
+            android:backgroundTint="@color/orange"
+            android:textColor="@color/light_white"
+            android:padding="4dp"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
+    <!-- Emergency Contacts Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/rounded_corners"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="📞 Emergency Contacts:"
+            android:textColor="@color/dark_grey"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
+
+        <LinearLayout
+            android:id="@+id/emergencyContactsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Emergency contacts will be added here dynamically -->
+            <TextView
+                android:id="@+id/tvNoContacts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No emergency contacts available"
+                android:textColor="@color/dark_grey"
+                android:textSize="12sp"
+                android:textStyle="italic" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Action Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <Button
+            android:id="@+id/btnAssist"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="ASSIST"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:backgroundTint="@color/orange"
+            android:textColor="@color/light_white"
+            android:layout_marginEnd="4dp" />
+
+        <Button
+            android:id="@+id/btnCallEmergency"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="CALL 911"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:backgroundTint="@color/primary_purple"
+            android:textColor="@color/light_white"
+            android:layout_marginStart="4dp" />
+    </LinearLayout>
+
+</LinearLayout>
