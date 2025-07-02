@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.safeguard.database.UserDatabaseHelper;
 
 public class LogIn extends AppCompatActivity {
+
     private EditText etEmail, etPassword; // Input fields for email and password
     private Button btnLogin; // Log In button
     private TextView tvSignUp, tvStaff; // Sign Up navigation text
