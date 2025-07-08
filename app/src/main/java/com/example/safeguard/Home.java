@@ -189,6 +189,7 @@ public class Home extends AppCompatActivity implements OnMapReadyCallback {
             setSelectedButton(btnSafetyTips);
             isHomeSelected = false;
             // TODO: Navigate to Safety Tips page
+            startActivity(new Intent(Home.this, SafetyTips.class));
         });
 
         btnAboutUs.setOnClickListener(v -> {

@@ -75,6 +75,11 @@
         <activity
             android:name=".StaffTestActivity"
             android:exported="true" />
+
+        <!-- Staff Test Activity -->
+        <activity
+            android:name=".SafetyTips"
+            android:exported="true" />
     </application>
 
 </manifest>
