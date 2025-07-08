@@ -76,9 +76,14 @@
             android:name=".StaffTestActivity"
             android:exported="true" />
 
-        <!-- Staff Test Activity -->
+        <!-- Safety Tips Activity -->
         <activity
             android:name=".SafetyTips"
+            android:exported="true" />
+
+        <!-- About Us Activity -->
+        <activity
+            android:name=".AboutUs"
             android:exported="true" />
     </application>
 

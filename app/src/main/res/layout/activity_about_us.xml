@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_purple">
+
+    <!-- Back Arrow -->
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="45dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/return_arrow"
+        android:contentDescription="Back"
+        app:tint="@color/dark_grey" />
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/safety_tips_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:padding="16dp"
+        android:text="About Us"
+        android:textColor="@color/dark_grey"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/prompt_regular" />
+</RelativeLayout>

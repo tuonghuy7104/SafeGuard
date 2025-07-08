@@ -222,15 +222,6 @@
                     android:orientation="vertical"
                     android:padding="16dp">
 
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="Emergency Numbers"-->
-<!--                        android:textStyle="bold"-->
-<!--                        android:textColor="@color/dark_grey"-->
-<!--                        android:textSize="18sp"-->
-<!--                        android:fontFamily="@font/prompt_regular" />-->
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
