@@ -26,7 +26,7 @@
             app:tint="@color/dark_grey" />
 
         <TextView
-            android:id="@+id/about_title"
+            android:id="@+id/about"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -43,187 +43,249 @@
             android:layout_height="0dp" />
     </LinearLayout>
 
-    <!-- Content Scroll -->
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <!-- Logo text (app name) -->
+    <TextView
+        android:id="@+id/logo_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="@color/primary_yellow"
+        android:fontFamily="@font/bangers_regular"
+        android:layout_centerHorizontal="true"
         android:layout_below="@id/header_layout"
-        android:layout_above="@id/footerText"
-        android:padding="16dp">
+        android:layout_marginTop="40dp"/>
 
+    <TextView
+        android:id="@+id/version_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="version 1.0"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/logo_text"/>
+
+    <!-- Accordions Container -->
+    <LinearLayout
+        android:id="@+id/accordion_container"
+        android:layout_below="@id/logo_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="32dp"
+        android:paddingHorizontal="16dp">
+
+        <!-- Check for Updates Accordion -->
         <LinearLayout
+            android:id="@+id/check_updates_section"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginBottom="32dp">
+            android:background="@drawable/card_background"
+            android:padding="16dp"
+            android:layout_marginBottom="12dp">
 
-            <!-- Block: About App -->
-            <androidx.cardview.widget.CardView
+            <!-- Title Row -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginHorizontal="0dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="6dp"
-                app:cardBackgroundColor="@android:color/white">
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:clickable="true"
+                android:focusable="true"
+                android:id="@+id/check_updates_title_row">
 
+                <TextView
+                    android:id="@+id/check_updates_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Check for Updates"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/check_updates_icon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_dropdown_arrow"
+                    android:rotation="0"
+                    android:layout_marginStart="8dp"
+                    app:tint="@android:color/black"/>
+            </LinearLayout>
+
+            <!-- Hidden content -->
+            <TextView
+                android:id="@+id/check_updates_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Your app is up to date!"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                android:visibility="gone"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
+
+        <!-- About Accordion -->
+        <LinearLayout
+            android:id="@+id/about_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_background"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!--Title Row-->
+            <LinearLayout
+                android:id="@+id/about_title_row"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:id="@+id/about_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="About Us"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/about_icon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_dropdown_arrow"
+                    android:rotation="0"
+                    android:layout_marginStart="8dp"
+                    app:tint="@android:color/black"/>
+            </LinearLayout>
+
+            <!-- Hidden content -->
+            <LinearLayout
+                android:id="@+id/about_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- Item 1: Introduction -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/accordion_item_border"
                     android:orientation="vertical"
-                    android:padding="16dp"
-                    android:layout_marginBottom="16dp">
+                    android:layout_marginBottom="8dp"
+                    android:padding="12dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="About the App"
                         android:textStyle="bold"
-                        android:textSize="18sp"
-                        android:textColor="@color/dark_grey"
-                        android:layout_marginBottom="4dp" />
+                        android:textColor="@android:color/black"
+                        android:textSize="15sp"
+                        android:layout_marginBottom="4dp"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="This app helps users stay safe with real-time alerts, emergency contact access, and safety tips. Whether walking home late or traveling alone, you’ll have help nearby."
-                        android:textSize="16sp"
-                        android:textColor="@color/dark_grey"
-                        android:fontFamily="@font/prompt_regular"
-                        android:lineSpacingExtra="4dp"/>
+                        android:lineSpacingExtra="4dp"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp" />
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
 
-            <!-- Vision -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="6dp"
-                app:cardBackgroundColor="@android:color/white">
-
+                <!-- Item 2: Vision -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/accordion_item_border"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:layout_marginBottom="8dp"
+                    android:padding="12dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Our Vision"
                         android:textStyle="bold"
-                        android:textSize="18sp"
-                        android:textColor="@color/dark_grey"
-                        android:layout_marginBottom="4dp" />
+                        android:textColor="@android:color/black"
+                        android:textSize="15sp"
+                        android:layout_marginBottom="4dp"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="To become a trusted safety tool in everyone’s pocket, anytime, anywhere."
-                        android:textSize="16sp"
-                        android:textColor="@color/dark_grey"
-                        android:fontFamily="@font/prompt_regular"
-                        android:lineSpacingExtra="4dp"/>
+                        android:lineSpacingExtra="4dp"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp" />
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
 
-
-            <!-- Block: Mission -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="6dp"
-                app:cardBackgroundColor="@android:color/white">
+                <!-- Item 3: Mission -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/accordion_item_border"
                     android:orientation="vertical"
-                    android:padding="16dp"
-                    android:layout_marginBottom="16dp">
+                    android:layout_marginBottom="8dp"
+                    android:padding="12dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Our Mission"
                         android:textStyle="bold"
-                        android:textSize="18sp"
-                        android:textColor="@color/dark_grey"
-                        android:layout_marginBottom="4dp" />
+                        android:textColor="@android:color/black"
+                        android:textSize="15sp"
+                        android:layout_marginBottom="4dp"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="To empower everyone with quick access to safety info, making cities safer and people better prepared."
-                        android:textSize="16sp"
-                        android:textColor="@color/dark_grey"
-                        android:fontFamily="@font/prompt_regular"
-                        android:lineSpacingExtra="4dp"/>
+                        android:lineSpacingExtra="4dp"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp" />
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
 
-            <!-- Commitment -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="6dp"
-                app:cardBackgroundColor="@android:color/white">
-
+                <!-- Item 4: Commitment -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/accordion_item_border"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:padding="12dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Our Commitment"
                         android:textStyle="bold"
-                        android:textSize="18sp"
-                        android:textColor="@color/dark_grey"
-                        android:layout_marginBottom="4dp" />
+                        android:textColor="@android:color/black"
+                        android:textSize="15sp"
+                        android:layout_marginBottom="4dp"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="We respect your privacy and are committed to secure, responsible use of your data. Our app is designed with transparency, simplicity, and reliability at its core."
-                        android:textSize="16sp"
-                        android:textColor="@color/dark_grey"
-                        android:fontFamily="@font/prompt_regular"
-                        android:lineSpacingExtra="4dp"/>
+                        android:lineSpacingExtra="4dp"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp" />
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
-            <!-- Block: App Info -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Version 1.0  •  Made with ❤️ in Vietnam"
-                android:textSize="14sp"
-                android:textColor="@color/dark_grey"
-                android:gravity="center"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/prompt_regular" />
-        </LinearLayout>
-    </ScrollView>
+            </LinearLayout>
 
-    <!-- Bottom App Name -->
-    <TextView
-        android:id="@+id/footerText"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="@string/app_name"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="@color/primary_yellow"
-        android:fontFamily="@font/bangers_regular"
-        android:gravity="center"
-        android:background="@color/primary_purple"
-        android:layout_alignParentBottom="true" />
+        </LinearLayout>
+    </LinearLayout>
 </RelativeLayout>
