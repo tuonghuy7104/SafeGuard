@@ -6,30 +6,224 @@
     android:layout_height="match_parent"
     android:background="@color/light_purple">
 
-    <!-- Back Arrow -->
-    <ImageButton
-        android:id="@+id/back_button"
-        android:layout_width="wrap_content"
+    <!-- Header with Back & Title -->
+    <LinearLayout
+        android:id="@+id/header_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="45dp"
-        android:background="?android:attr/selectableItemBackgroundBorderless"
-        android:src="@drawable/return_arrow"
-        android:contentDescription="Back"
-        app:tint="@color/dark_grey" />
-
-    <!-- Title -->
-    <TextView
-        android:id="@+id/safety_tips_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
         android:layout_marginTop="20dp"
         android:padding="16dp"
-        android:text="About Us"
-        android:textColor="@color/dark_grey"
-        android:textSize="28sp"
+        android:gravity="center_vertical">
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/return_arrow"
+            android:contentDescription="Back"
+            app:tint="@color/dark_grey" />
+
+        <TextView
+            android:id="@+id/about_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="About Us"
+            android:textAlignment="center"
+            android:textColor="@color/dark_grey"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/prompt_regular" />
+
+        <!-- Dummy View same width as back button -->
+        <View
+            android:layout_width="40dp"
+            android:layout_height="0dp" />
+    </LinearLayout>
+
+    <!-- Content Scroll -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/header_layout"
+        android:layout_above="@id/footerText"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="32dp">
+
+            <!-- Block: About App -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginHorizontal="0dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp"
+                app:cardBackgroundColor="@android:color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:layout_marginBottom="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="About the App"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:textColor="@color/dark_grey"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="This app helps users stay safe with real-time alerts, emergency contact access, and safety tips. Whether walking home late or traveling alone, you’ll have help nearby."
+                        android:textSize="16sp"
+                        android:textColor="@color/dark_grey"
+                        android:fontFamily="@font/prompt_regular"
+                        android:lineSpacingExtra="4dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Vision -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp"
+                app:cardBackgroundColor="@android:color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Our Vision"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:textColor="@color/dark_grey"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="To become a trusted safety tool in everyone’s pocket, anytime, anywhere."
+                        android:textSize="16sp"
+                        android:textColor="@color/dark_grey"
+                        android:fontFamily="@font/prompt_regular"
+                        android:lineSpacingExtra="4dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <!-- Block: Mission -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp"
+                app:cardBackgroundColor="@android:color/white">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:layout_marginBottom="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Our Mission"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:textColor="@color/dark_grey"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="To empower everyone with quick access to safety info, making cities safer and people better prepared."
+                        android:textSize="16sp"
+                        android:textColor="@color/dark_grey"
+                        android:fontFamily="@font/prompt_regular"
+                        android:lineSpacingExtra="4dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Commitment -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp"
+                app:cardBackgroundColor="@android:color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Our Commitment"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:textColor="@color/dark_grey"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="We respect your privacy and are committed to secure, responsible use of your data. Our app is designed with transparency, simplicity, and reliability at its core."
+                        android:textSize="16sp"
+                        android:textColor="@color/dark_grey"
+                        android:fontFamily="@font/prompt_regular"
+                        android:lineSpacingExtra="4dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <!-- Block: App Info -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Version 1.0  •  Made with ❤️ in Vietnam"
+                android:textSize="14sp"
+                android:textColor="@color/dark_grey"
+                android:gravity="center"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/prompt_regular" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom App Name -->
+    <TextView
+        android:id="@+id/footerText"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/app_name"
+        android:textSize="16sp"
         android:textStyle="bold"
-        android:fontFamily="@font/prompt_regular" />
+        android:textColor="@color/primary_yellow"
+        android:fontFamily="@font/bangers_regular"
+        android:gravity="center"
+        android:background="@color/primary_purple"
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>
