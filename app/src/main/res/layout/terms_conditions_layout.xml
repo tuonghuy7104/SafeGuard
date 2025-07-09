@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_purple">
+
+    <!-- Header -->
+    <LinearLayout
+        android:id="@+id/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:padding="16dp"
+        android:gravity="center_vertical">
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/return_arrow"
+            android:contentDescription="Back"
+            app:tint="@color/dark_grey" />
+
+        <TextView
+            android:id="@+id/title_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Terms and Conditions"
+            android:textAlignment="center"
+            android:textColor="@color/dark_grey"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/prompt_regular" />
+
+        <View
+            android:layout_width="40dp"
+            android:layout_height="0dp" />
+    </LinearLayout>
+
+    <!-- Content -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/header_layout"
+        android:layout_above="@id/footerText"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- CardView with T&C -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="6dp"
+                app:cardBackgroundColor="@android:color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Please read these terms and conditions carefully before using our application."
+                        android:textSize="16sp"
+                        android:textColor="@color/dark_grey"
+                        android:fontFamily="@font/prompt_regular"
+                        android:layout_marginBottom="16dp"
+                        android:lineSpacingExtra="4dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="1. Usage"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:textColor="@color/dark_grey"
+                        android:layout_marginBottom="4dp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="You agree to use the app only for lawful purposes and in a way that does not infringe the rights of others."
+                        android:textSize="16sp"
+                        android:textColor="@color/dark_grey"
+                        android:fontFamily="@font/prompt_regular"
+                        android:lineSpacingExtra="4dp"
+                        android:layout_marginBottom="16dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="2. Privacy"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:textColor="@color/dark_grey"
+                        android:layout_marginBottom="4dp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="We value your privacy and will never share your data without consent. Please review our privacy policy."
+                        android:textSize="16sp"
+                        android:textColor="@color/dark_grey"
+                        android:fontFamily="@font/prompt_regular"
+                        android:lineSpacingExtra="4dp"
+                        android:layout_marginBottom="16dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="3. Liability"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:textColor="@color/dark_grey"
+                        android:layout_marginBottom="4dp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="We are not liable for any direct or indirect damages resulting from the use of the app."
+                        android:textSize="16sp"
+                        android:textColor="@color/dark_grey"
+                        android:fontFamily="@font/prompt_regular"
+                        android:lineSpacingExtra="4dp"
+                        android:layout_marginBottom="16dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="4. Changes"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:textColor="@color/dark_grey"
+                        android:layout_marginBottom="4dp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Terms may be updated periodically. Continued use of the app means you accept any changes."
+                        android:textSize="16sp"
+                        android:textColor="@color/dark_grey"
+                        android:fontFamily="@font/prompt_regular"
+                        android:lineSpacingExtra="4dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Footer -->
+    <TextView
+        android:id="@+id/footerText"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/app_name"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/primary_yellow"
+        android:fontFamily="@font/bangers_regular"
+        android:gravity="center"
+        android:background="@color/primary_purple"
+        android:layout_alignParentBottom="true" />
+</RelativeLayout>

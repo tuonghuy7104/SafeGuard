@@ -203,6 +203,7 @@ public class Home extends AppCompatActivity implements OnMapReadyCallback {
             setSelectedButton(btnTermsConditions);
             isHomeSelected = false;
             // TODO: Navigate to Terms & Conditions page
+            startActivity(new Intent(Home.this, TermCondition.class));
         });
 
         btnLogOut.setOnClickListener(v -> showLogoutDialog());

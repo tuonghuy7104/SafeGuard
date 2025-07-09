@@ -85,6 +85,11 @@
         <activity
             android:name=".AboutUs"
             android:exported="true" />
+
+        <!-- Terms And Conditions -->
+        <activity
+            android:name=".TermCondition"
+            android:exported="true" />
     </application>
 
 </manifest>
