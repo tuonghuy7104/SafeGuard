@@ -1,7 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Base.Theme.SafeGuard" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Màu nền tổng thể -->
-        <item name="colorBackground">@color/white</item>
         <item name="colorOnBackground">@color/orange</item>
 
         <!-- Màu chủ đạo (App bar, nút, v.v.) -->
@@ -13,7 +12,6 @@
         <item name="colorOnPrimaryContainer">@color/orange</item>
 
         <!-- Text mặc định -->
-        <item name="textColorPrimary">@color/orange</item>
         <item name="android:textColorPrimary">@color/orange</item>
 
         <!-- Optional: màu cho icon, status bar -->
