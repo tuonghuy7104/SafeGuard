@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_purple">
+    android:background="@color/white">
 
     <!-- Header with Back & Title -->
     <LinearLayout
@@ -32,7 +32,7 @@
             android:layout_weight="1"
             android:text="About Us"
             android:textAlignment="center"
-            android:textColor="@color/dark_grey"
+            android:textColor="@color/orange"
             android:textSize="24sp"
             android:textStyle="bold"
             android:fontFamily="@font/prompt_regular" />
@@ -64,7 +64,7 @@
         android:text="version 1.0"
         android:textSize="11sp"
         android:textStyle="bold"
-        android:textColor="@android:color/black"
+        android:textColor="@color/orange"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/logo_text"/>
 
@@ -105,7 +105,7 @@
                     android:layout_weight="1"
                     android:text="Check for Updates"
                     android:textSize="16sp"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/orange"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -125,7 +125,7 @@
                 android:layout_height="wrap_content"
                 android:text="Your app is up to date!"
                 android:textSize="14sp"
-                android:textColor="@android:color/black"
+                android:textColor="@color/orange"
                 android:visibility="gone"
                 android:layout_marginTop="8dp"/>
         </LinearLayout>
@@ -156,7 +156,7 @@
                     android:layout_weight="1"
                     android:text="About Us"
                     android:textSize="16sp"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/orange"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -192,7 +192,7 @@
                         android:layout_height="wrap_content"
                         android:text="About the App"
                         android:textStyle="bold"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/orange"
                         android:textSize="15sp"
                         android:layout_marginBottom="4dp"/>
 
@@ -201,7 +201,7 @@
                         android:layout_height="wrap_content"
                         android:text="This app helps users stay safe with real-time alerts, emergency contact access, and safety tips. Whether walking home late or traveling alone, you’ll have help nearby."
                         android:lineSpacingExtra="4dp"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/orange"
                         android:textSize="14sp" />
                 </LinearLayout>
 
@@ -219,7 +219,7 @@
                         android:layout_height="wrap_content"
                         android:text="Our Vision"
                         android:textStyle="bold"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/orange"
                         android:textSize="15sp"
                         android:layout_marginBottom="4dp"/>
 
@@ -228,7 +228,7 @@
                         android:layout_height="wrap_content"
                         android:text="To become a trusted safety tool in everyone’s pocket, anytime, anywhere."
                         android:lineSpacingExtra="4dp"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/orange"
                         android:textSize="14sp" />
                 </LinearLayout>
 
@@ -246,7 +246,7 @@
                         android:layout_height="wrap_content"
                         android:text="Our Mission"
                         android:textStyle="bold"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/orange"
                         android:textSize="15sp"
                         android:layout_marginBottom="4dp"/>
 
@@ -255,7 +255,7 @@
                         android:layout_height="wrap_content"
                         android:text="To empower everyone with quick access to safety info, making cities safer and people better prepared."
                         android:lineSpacingExtra="4dp"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/orange"
                         android:textSize="14sp" />
                 </LinearLayout>
 
@@ -272,7 +272,7 @@
                         android:layout_height="wrap_content"
                         android:text="Our Commitment"
                         android:textStyle="bold"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/orange"
                         android:textSize="15sp"
                         android:layout_marginBottom="4dp"/>
 
@@ -281,11 +281,25 @@
                         android:layout_height="wrap_content"
                         android:text="We respect your privacy and are committed to secure, responsible use of your data. Our app is designed with transparency, simplicity, and reliability at its core."
                         android:lineSpacingExtra="4dp"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/orange"
                         android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>
     </LinearLayout>
+
+    <!-- Footer -->
+    <TextView
+        android:id="@+id/footerText"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/app_name"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/primary_yellow"
+        android:fontFamily="@font/bangers_regular"
+        android:gravity="center"
+        android:background="@color/grey"
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>

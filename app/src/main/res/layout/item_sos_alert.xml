@@ -163,7 +163,7 @@
             android:textSize="14sp"
             android:textStyle="bold"
             android:backgroundTint="@color/primary_purple"
-            android:textColor="@color/light_white"
+            android:textColor="@color/orange"
             android:layout_marginStart="4dp" />
     </LinearLayout>
 

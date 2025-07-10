@@ -1,8 +1,25 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
     <style name="Base.Theme.SafeGuard" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Màu nền tổng thể -->
+        <item name="colorBackground">@color/white</item>
+        <item name="colorOnBackground">@color/orange</item>
+
+        <!-- Màu chủ đạo (App bar, nút, v.v.) -->
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorOnPrimary">@color/orange</item>
+
+        <!-- Màu nút (Material 3 style) -->
+        <item name="colorPrimaryContainer">@color/white</item>
+        <item name="colorOnPrimaryContainer">@color/orange</item>
+
+        <!-- Text mặc định -->
+        <item name="textColorPrimary">@color/orange</item>
+        <item name="android:textColorPrimary">@color/orange</item>
+
+        <!-- Optional: màu cho icon, status bar -->
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:navigationBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item> <!-- Làm icon status bar màu đen -->
     </style>
 
     <style name="Theme.SafeGuard" parent="Base.Theme.SafeGuard" />
