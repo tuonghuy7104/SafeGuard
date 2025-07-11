@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Are you sure you want to Log out?"
-        android:textColor="@color/dark_grey"
+        android:textColor="@color/orange"
         android:textSize="18sp"
         android:fontFamily="@font/prompt_regular"
         android:layout_centerHorizontal="true"
@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Yes"
-            android:backgroundTint="@color/purple"
+            android:backgroundTint="@color/orange"
             android:textColor="@color/light_white"
             android:layout_marginRight="20dp" />
 
@@ -45,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="No"
-            android:backgroundTint="@color/purple"
+            android:backgroundTint="@color/orange"
             android:textColor="@color/light_white"
             android:layout_marginLeft="20dp"/>
     </LinearLayout>

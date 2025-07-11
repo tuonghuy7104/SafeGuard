@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_purple">
+    android:background="@color/white">
 
     <!-- Back Arrow -->
     <ImageButton
@@ -27,7 +27,7 @@
         android:layout_marginTop="20dp"
         android:padding="16dp"
         android:text="Safety Tips"
-        android:textColor="@color/dark_grey"
+        android:textColor="@color/orange"
         android:textSize="28sp"
         android:textStyle="bold"
         android:fontFamily="@font/prompt_regular" />
@@ -54,7 +54,7 @@
                 android:text="How to Stay Safe"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="@color/dark_grey"
+                android:textColor="@color/orange"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/prompt_regular"/>
 
@@ -82,7 +82,7 @@
                     android:layout_weight="1"
                     android:text="Let someone know where you're going."
                     android:textSize="16sp"
-                    android:textColor="@color/dark_grey"
+                    android:textColor="@color/orange"
                     android:fontFamily="@font/prompt_regular" />
             </LinearLayout>
 
@@ -102,7 +102,7 @@
                     android:layout_weight="1"
                     android:text="Avoid poorly lit areas at night."
                     android:textSize="16sp"
-                    android:textColor="@color/dark_grey"
+                    android:textColor="@color/orange"
                     android:fontFamily="@font/prompt_regular" />
 
                 <ImageView
@@ -136,7 +136,7 @@
                     android:layout_weight="1"
                     android:text="Keep emergency numbers saved in your phone."
                     android:textSize="16sp"
-                    android:textColor="@color/dark_grey"
+                    android:textColor="@color/orange"
                     android:fontFamily="@font/prompt_regular" />
             </LinearLayout>
 
@@ -156,7 +156,7 @@
                     android:layout_weight="1"
                     android:text="Trust your instincts — if something feels wrong, leave."
                     android:textSize="16sp"
-                    android:textColor="@color/dark_grey"
+                    android:textColor="@color/orange"
                     android:fontFamily="@font/prompt_regular" />
 
                 <ImageView
@@ -190,7 +190,7 @@
                     android:layout_weight="1"
                     android:text="Don't share your location publicly in real-time."
                     android:textSize="16sp"
-                    android:textColor="@color/dark_grey"
+                    android:textColor="@color/orange"
                     android:fontFamily="@font/prompt_regular" />
             </LinearLayout>
 
@@ -202,7 +202,7 @@
                 android:text="Emergency Numbers"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="@color/dark_grey"
+                android:textColor="@color/orange"
                 android:layout_marginTop="24dp"
                 android:fontFamily="@font/prompt_regular"/>
 
@@ -227,7 +227,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="• Police: 113\n• Fire Department: 114\n• Ambulance: 115\n• Emergency Services: 112"
-                        android:textColor="@color/dark_grey"
+                        android:textColor="@color/orange"
                         android:textSize="16sp"
                         android:fontFamily="@font/prompt_regular" />
                 </LinearLayout>
@@ -246,7 +246,7 @@
         android:textColor="@color/primary_yellow"
         android:fontFamily="@font/bangers_regular"
         android:gravity="center"
-        android:background="@color/primary_purple"
+        android:background="@color/grey"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

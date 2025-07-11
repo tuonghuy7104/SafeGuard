@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_purple">
+    android:background="@color/white">
 
     <!-- Header -->
     <LinearLayout
@@ -32,7 +32,7 @@
             android:layout_weight="1"
             android:text="Terms and Conditions"
             android:textAlignment="center"
-            android:textColor="@color/dark_grey"
+            android:textColor="@color/orange"
             android:textSize="24sp"
             android:textStyle="bold"
             android:fontFamily="@font/prompt_regular" />
@@ -75,7 +75,7 @@
                         android:layout_height="wrap_content"
                         android:text="Please read these terms and conditions carefully before using our application."
                         android:textSize="16sp"
-                        android:textColor="@color/dark_grey"
+                        android:textColor="@color/orange"
                         android:fontFamily="@font/prompt_regular"
                         android:layout_marginBottom="16dp"
                         android:lineSpacingExtra="4dp" />
@@ -86,14 +86,14 @@
                         android:text="1. Usage"
                         android:textStyle="bold"
                         android:textSize="18sp"
-                        android:textColor="@color/dark_grey"
+                        android:textColor="@color/orange"
                         android:layout_marginBottom="4dp" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="You agree to use the app only for lawful purposes and in a way that does not infringe the rights of others."
                         android:textSize="16sp"
-                        android:textColor="@color/dark_grey"
+                        android:textColor="@color/orange"
                         android:fontFamily="@font/prompt_regular"
                         android:lineSpacingExtra="4dp"
                         android:layout_marginBottom="16dp"/>
@@ -104,14 +104,14 @@
                         android:text="2. Privacy"
                         android:textStyle="bold"
                         android:textSize="18sp"
-                        android:textColor="@color/dark_grey"
+                        android:textColor="@color/orange"
                         android:layout_marginBottom="4dp" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="We value your privacy and will never share your data without consent. Please review our privacy policy."
                         android:textSize="16sp"
-                        android:textColor="@color/dark_grey"
+                        android:textColor="@color/orange"
                         android:fontFamily="@font/prompt_regular"
                         android:lineSpacingExtra="4dp"
                         android:layout_marginBottom="16dp"/>
@@ -122,14 +122,14 @@
                         android:text="3. Liability"
                         android:textStyle="bold"
                         android:textSize="18sp"
-                        android:textColor="@color/dark_grey"
+                        android:textColor="@color/orange"
                         android:layout_marginBottom="4dp" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="We are not liable for any direct or indirect damages resulting from the use of the app."
                         android:textSize="16sp"
-                        android:textColor="@color/dark_grey"
+                        android:textColor="@color/orange"
                         android:fontFamily="@font/prompt_regular"
                         android:lineSpacingExtra="4dp"
                         android:layout_marginBottom="16dp"/>
@@ -140,14 +140,14 @@
                         android:text="4. Changes"
                         android:textStyle="bold"
                         android:textSize="18sp"
-                        android:textColor="@color/dark_grey"
+                        android:textColor="@color/orange"
                         android:layout_marginBottom="4dp" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Terms may be updated periodically. Continued use of the app means you accept any changes."
                         android:textSize="16sp"
-                        android:textColor="@color/dark_grey"
+                        android:textColor="@color/orange"
                         android:fontFamily="@font/prompt_regular"
                         android:lineSpacingExtra="4dp"/>
                 </LinearLayout>
@@ -166,6 +166,6 @@
         android:textColor="@color/primary_yellow"
         android:fontFamily="@font/bangers_regular"
         android:gravity="center"
-        android:background="@color/primary_purple"
+        android:background="@color/grey"
         android:layout_alignParentBottom="true" />
 </RelativeLayout>

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_orange">
+    android:background="@color/white">
 
     <!-- Back Arrow -->
     <ImageButton
@@ -38,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Staff Login"
-        android:textColor="@color/dark_grey"
+        android:textColor="@color/orange"
         android:textSize="24sp"
         android:textStyle="bold"
         android:fontFamily="@font/prompt_regular"
@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:hint="Email"
         android:inputType="textEmailAddress"
-        android:backgroundTint="@color/orange"
+        android:backgroundTint="@color/dark_grey"
         android:textColor="@color/dark_grey"
         android:textColorHint="@color/orange"
         android:fontFamily="@font/prompt_regular"
@@ -68,7 +68,7 @@
         android:layout_height="wrap_content"
         android:hint="Password"
         android:inputType="textPassword"
-        android:backgroundTint="@color/orange"
+        android:backgroundTint="@color/dark_grey"
         android:textColor="@color/dark_grey"
         android:textColorHint="@color/orange"
         android:fontFamily="@font/prompt_regular"
