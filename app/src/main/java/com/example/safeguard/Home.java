@@ -32,6 +32,7 @@ import androidx.core.content.ContextCompat;
 
 import com.example.safeguard.database.ContactDatabaseHelper;
 import com.example.safeguard.database.SosAlertDatabaseHelper;
+import com.example.safeguard.database.FirebaseManager;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -89,6 +90,9 @@ public class Home extends AppCompatActivity implements OnMapReadyCallback {
 
     // Database helper for SOS alerts
     private SosAlertDatabaseHelper sosAlertDbHelper;
+    
+    // Firebase manager
+    private FirebaseManager firebaseManager;
 
     // Google Map variables
     private MapView mapView;
@@ -123,6 +127,7 @@ public class Home extends AppCompatActivity implements OnMapReadyCallback {
         // Initialize database helpers
         contactDatabaseHelper = new ContactDatabaseHelper(this);
         sosAlertDbHelper = new SosAlertDatabaseHelper(this);
+        firebaseManager = new FirebaseManager(this);
 
         // Initialize sidebar buttons
         btnHome = findViewById(R.id.btn_home);
@@ -817,8 +822,8 @@ public class Home extends AppCompatActivity implements OnMapReadyCallback {
                 }
                 cursor.close();
                 
-                // Save SOS alert to database for staff
-                long alertId = sosAlertDbHelper.addSosAlert(
+                // Save SOS alert to local database for staff
+                long localAlertId = sosAlertDbHelper.addSosAlert(
                     userId, 
                     userName, 
                     userEmail, 
@@ -827,10 +832,21 @@ public class Home extends AppCompatActivity implements OnMapReadyCallback {
                     emergencyContacts.toString()
                 );
                 
-                if (alertId != -1) {
-                    Log.d("SOSApp", "SOS Alert saved to database with ID: " + alertId);
+                if (localAlertId != -1) {
+                    Log.d("SOSApp", "SOS Alert saved to local database with ID: " + localAlertId);
+                    
+                    // Get the alert we just created with all its data
+                    List<SosAlertDatabaseHelper.SosAlert> alerts = sosAlertDbHelper.getActiveSosAlerts();
+                    for (SosAlertDatabaseHelper.SosAlert alert : alerts) {
+                        if (alert.getId() == localAlertId) {
+                            // Send alert to Firebase - this will sync with all devices
+                            Log.d("SOSApp", "Sending alert to Firebase: " + alert.getUserName());
+                            firebaseManager.addSosAlert(alert);
+                            break;
+                        }
+                    }
                 } else {
-                    Log.e("SOSApp", "Failed to save SOS Alert to database");
+                    Log.e("SOSApp", "Failed to save SOS Alert to local database");
                 }
                 
                 // Send SMS to emergency contacts

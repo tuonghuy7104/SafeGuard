@@ -10,6 +10,7 @@
     <color name="light_purple">#d1b8e7</color>
     <color name="orange">#f4a500</color>
     <color name="light_orange">#fbcf92</color>
+    <color name="light_yellow">#FFE082</color> <!-- Added missing light yellow -->
 
     <!-- Cores neutras -->
     <color name="white">#ffffff</color>
