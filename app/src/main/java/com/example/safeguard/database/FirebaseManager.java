@@ -23,7 +23,7 @@ import java.util.Map;
 public class FirebaseManager {
     private static final String TAG = "FirebaseManager";
     private static final String SOS_ALERTS_PATH = "sos_alerts";
-    private static final String DATABASE_URL = "https://safeguard-36ba7-default-rtdb.firebaseio.com/";
+    private static final String DATABASE_URL = "https://safeguard-36ba7-default-rtdb.asia-southeast1.firebasedatabase.app/";
 
     private final DatabaseReference sosAlertsRef;
     private final SosAlertDatabaseHelper localDbHelper;

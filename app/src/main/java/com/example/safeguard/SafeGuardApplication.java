@@ -23,7 +23,7 @@ import java.util.Map;
 
 public class SafeGuardApplication extends Application {
     private static final String TAG = "SafeGuardApplication";
-    private static final String DATABASE_URL = "https://safeguard-36ba7-default-rtdb.firebaseio.com/";
+    private static final String DATABASE_URL = "https://safeguard-36ba7-default-rtdb.asia-southeast1.firebasedatabase.app/";
     private static boolean persistenceInitialized = false;
     private static boolean firebaseInitialized = false;
 

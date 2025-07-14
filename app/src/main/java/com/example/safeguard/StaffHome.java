@@ -160,7 +160,7 @@ public class StaffHome extends AppCompatActivity implements OnMapReadyCallback {
         // Get the Firebase database reference
         FirebaseDatabase database;
         try {
-            String DATABASE_URL = "https://safeguard-36ba7-default-rtdb.firebaseio.com/";
+            String DATABASE_URL = "https://safeguard-36ba7-default-rtdb.asia-southeast1.firebasedatabase.app/";
             database = FirebaseDatabase.getInstance(DATABASE_URL);
             Log.d("StaffHome", "Using explicit database URL: " + DATABASE_URL);
         } catch (Exception e) {
@@ -635,7 +635,7 @@ public class StaffHome extends AppCompatActivity implements OnMapReadyCallback {
             // Get Firebase database reference
             FirebaseDatabase database;
             try {
-                String DATABASE_URL = "https://safeguard-36ba7-default-rtdb.firebaseio.com/";
+                String DATABASE_URL = "https://safeguard-36ba7-default-rtdb.asia-southeast1.firebasedatabase.app/";
                 database = FirebaseDatabase.getInstance(DATABASE_URL);
             } catch (Exception e) {
                 database = FirebaseDatabase.getInstance();
