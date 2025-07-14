@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.example.safeguard.database.FirebaseManager;
 import com.example.safeguard.database.SosAlertDatabaseHelper;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -34,6 +35,7 @@ public class StaffHome extends AppCompatActivity implements OnMapReadyCallback {
     private LinearLayout notificationList;
     private Button btnLogout;
     private SosAlertDatabaseHelper sosAlertDbHelper;
+    private FirebaseManager firebaseManager;
     private TextView tvNoAlerts;
 
     @Override
@@ -41,8 +43,9 @@ public class StaffHome extends AppCompatActivity implements OnMapReadyCallback {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_staff_home);
 
-        // Initialize database helper
+        // Initialize database helpers
         sosAlertDbHelper = new SosAlertDatabaseHelper(this);
+        firebaseManager = new FirebaseManager(this);
 
         // Initialize UI Elements
         mapView = findViewById(R.id.mapView);
@@ -61,18 +64,89 @@ public class StaffHome extends AppCompatActivity implements OnMapReadyCallback {
             finish(); // Close current activity
         });
 
-        // Load SOS alerts
+        // Thiết lập Firebase listener để nhận các alerts mới
+        setupFirebaseListener();
+        
+        // Load SOS alerts from local database first (for offline support)
         loadSosAlerts();
+    }
+
+    /**
+     * Thiết lập listener để lắng nghe các thay đổi từ Firebase
+     */
+    private void setupFirebaseListener() {
+        firebaseManager.listenForAlerts(alerts -> {
+            // Cập nhật UI khi có thay đổi từ Firebase
+            runOnUiThread(() -> {
+                // Clear existing views
+                notificationList.removeAllViews();
+                
+                if (alerts.isEmpty()) {
+                    // Hiển thị thông báo không có alerts
+                    if (tvNoAlerts != null) {
+                        tvNoAlerts.setVisibility(View.VISIBLE);
+                    }
+                    return;
+                }
+                
+                // Ẩn thông báo không có alerts
+                if (tvNoAlerts != null) {
+                    tvNoAlerts.setVisibility(View.GONE);
+                }
+
+                // Tạo view cho từng alert
+                for (SosAlertDatabaseHelper.SosAlert alert : alerts) {
+                    View alertView = createSosAlertView(alert);
+                    notificationList.addView(alertView);
+                }
+                
+                // Hiển thị tất cả các điểm trên bản đồ
+                if (googleMap != null) {
+                    showAlertsOnMap(alerts);
+                }
+            });
+        });
     }
 
     @Override
     public void onMapReady(GoogleMap map) {
         googleMap = map;
-        // Future: Add markers when an alert is received
+        // Sau khi map sẵn sàng, hiển thị các alerts lên map
+        loadMapMarkers();
     }
 
     /**
-     * Load và hiển thị danh sách SOS alerts
+     * Hiển thị tất cả alerts lên map
+     */
+    private void loadMapMarkers() {
+        List<SosAlertDatabaseHelper.SosAlert> alerts = sosAlertDbHelper.getActiveSosAlerts();
+        showAlertsOnMap(alerts);
+    }
+
+    /**
+     * Hiển thị các điểm cảnh báo lên map
+     */
+    private void showAlertsOnMap(List<SosAlertDatabaseHelper.SosAlert> alerts) {
+        if (googleMap == null) return;
+        
+        googleMap.clear(); // Xóa các markers hiện tại
+        
+        for (SosAlertDatabaseHelper.SosAlert alert : alerts) {
+            LatLng location = new LatLng(alert.getLatitude(), alert.getLongitude());
+            googleMap.addMarker(new MarkerOptions()
+                    .position(location)
+                    .title(alert.getUserName())
+                    .snippet("SOS Alert: " + alert.getTimestamp()));
+            
+            // Zoom đến alert gần nhất
+            if (alerts.indexOf(alert) == 0) {
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
+            }
+        }
+    }
+
+    /**
+     * Load và hiển thị danh sách SOS alerts từ local database
      */
     private void loadSosAlerts() {
         List<SosAlertDatabaseHelper.SosAlert> alerts = sosAlertDbHelper.getActiveSosAlerts();
@@ -219,6 +293,12 @@ public class StaffHome extends AppCompatActivity implements OnMapReadyCallback {
                 .setMessage("Are you sure you want to dismiss this alert? This action cannot be undone.")
                 .setPositiveButton("Dismiss", (dialog, which) -> {
                     boolean success = sosAlertDbHelper.deleteSosAlert(alert.getId());
+                    
+                    // Cập nhật trạng thái trên Firebase
+                    if (alert.getFirebaseId() != null) {
+                        firebaseManager.updateAlertStatus(alert.getFirebaseId(), "dismissed");
+                    }
+                    
                     if (success) {
                         Toast.makeText(this, "Alert dismissed successfully", Toast.LENGTH_SHORT).show();
                         loadSosAlerts(); // Reload alerts
@@ -239,6 +319,12 @@ public class StaffHome extends AppCompatActivity implements OnMapReadyCallback {
                 .setMessage("Are you sure you want to mark this alert as assisted? This will resolve the case.")
                 .setPositiveButton("Mark Assisted", (dialog, which) -> {
                     boolean success = sosAlertDbHelper.resolveSosAlert(alert.getId());
+                    
+                    // Cập nhật trạng thái trên Firebase
+                    if (alert.getFirebaseId() != null) {
+                        firebaseManager.updateAlertStatus(alert.getFirebaseId(), "resolved");
+                    }
+                    
                     if (success) {
                         Toast.makeText(this, "Alert marked as assisted", Toast.LENGTH_SHORT).show();
                         loadSosAlerts(); // Reload alerts
@@ -251,24 +337,22 @@ public class StaffHome extends AppCompatActivity implements OnMapReadyCallback {
     }
 
     /**
-     * Hiển thị vị trí trên map
+     * Hiển thị vị trí trên bản đồ
      */
     private void showLocationOnMap(SosAlertDatabaseHelper.SosAlert alert) {
-        if (googleMap != null) {
-            LatLng location = new LatLng(alert.getLatitude(), alert.getLongitude());
-            googleMap.clear();
-            googleMap.addMarker(new MarkerOptions()
-                    .position(location)
-                    .title(alert.getUserName())
-                    .snippet("Emergency Location"));
-            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
-            
-            Toast.makeText(this, "Location displayed on map", Toast.LENGTH_SHORT).show();
-        }
+        LatLng location = new LatLng(alert.getLatitude(), alert.getLongitude());
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
+        
+        // Hiển thị marker nếu chưa có
+        googleMap.clear();
+        googleMap.addMarker(new MarkerOptions()
+                .position(location)
+                .title(alert.getUserName())
+                .snippet("SOS Alert: " + alert.getTimestamp()));
     }
 
     /**
-     * Thực hiện cuộc gọi
+     * Thực hiện cuộc gọi đến số điện thoại
      */
     private void makePhoneCall(String phoneNumber) {
         Intent intent = new Intent(Intent.ACTION_CALL);
@@ -280,23 +364,20 @@ public class StaffHome extends AppCompatActivity implements OnMapReadyCallback {
      * Kiểm tra quyền gọi điện
      */
     private boolean checkCallPermission() {
-        return ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) 
-               == PackageManager.PERMISSION_GRANTED;
+        return ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED;
     }
 
     /**
      * Yêu cầu quyền gọi điện
      */
     private void requestCallPermission() {
-        ActivityCompat.requestPermissions(this, 
-                new String[]{Manifest.permission.CALL_PHONE}, 
-                100);
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, 1);
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 100) {
+        if (requestCode == 1) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, "Call permission granted", Toast.LENGTH_SHORT).show();
             } else {
@@ -309,22 +390,19 @@ public class StaffHome extends AppCompatActivity implements OnMapReadyCallback {
     protected void onResume() {
         super.onResume();
         mapView.onResume();
-        // Reload alerts when returning to the activity
+        // Reload alerts when activity resumes
         loadSosAlerts();
     }
 
     @Override
     protected void onPause() {
-        super.onPause();
         mapView.onPause();
+        super.onPause();
     }
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         mapView.onDestroy();
-        if (sosAlertDbHelper != null) {
-            sosAlertDbHelper.close();
-        }
+        super.onDestroy();
     }
 }
