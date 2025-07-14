@@ -1,10 +1,14 @@
 package com.example.safeguard.database;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -19,20 +23,85 @@ import java.util.Map;
 public class FirebaseManager {
     private static final String TAG = "FirebaseManager";
     private static final String SOS_ALERTS_PATH = "sos_alerts";
+    private static final String DATABASE_URL = "https://safeguard-36ba7-default-rtdb.firebaseio.com/";
 
     private final DatabaseReference sosAlertsRef;
     private final SosAlertDatabaseHelper localDbHelper;
+    private final Context context;
 
     public FirebaseManager(Context context) {
-        // Get Firebase instance and ensure persistence is enabled for offline support
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        database.setPersistenceEnabled(true);
+        this.context = context;
         
+        // Get Firebase instance
+        FirebaseDatabase database;
+        try {
+            database = FirebaseDatabase.getInstance(DATABASE_URL);
+            Log.d(TAG, "Using explicit database URL: " + DATABASE_URL);
+        } catch (Exception e) {
+            Log.w(TAG, "Error using explicit URL, falling back to default: " + e.getMessage());
+            database = FirebaseDatabase.getInstance();
+        }
+        
+        // Get reference to SOS alerts
         sosAlertsRef = database.getReference(SOS_ALERTS_PATH);
         localDbHelper = new SosAlertDatabaseHelper(context);
         
         // Keep cached data if disconnected
         sosAlertsRef.keepSynced(true);
+        
+        // Check connectivity and notify user if offline
+        checkConnectivity();
+    }
+    
+    /**
+     * Check if device has network connectivity
+     */
+    private void checkConnectivity() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+        
+        if (!isConnected) {
+            Log.w(TAG, "No network connectivity - Firebase will work in offline mode only");
+            Toast.makeText(context, "No internet connection. Working in offline mode.", Toast.LENGTH_LONG).show();
+        } else {
+            Log.d(TAG, "Network connectivity available");
+            // Test database connection
+            testDatabaseConnection();
+        }
+    }
+    
+    /**
+     * Test connection to Firebase database
+     */
+    private void testDatabaseConnection() {
+        // Get Firebase instance with explicit URL
+        FirebaseDatabase database;
+        try {
+            database = FirebaseDatabase.getInstance(DATABASE_URL);
+        } catch (Exception e) {
+            database = FirebaseDatabase.getInstance();
+        }
+        
+        DatabaseReference testRef = database.getReference(".info/connected");
+        testRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Boolean connected = snapshot.getValue(Boolean.class);
+                if (connected != null && connected) {
+                    Log.d(TAG, "Successfully connected to Firebase");
+                } else {
+                    Log.w(TAG, "Failed to connect to Firebase");
+                    Toast.makeText(context, "Could not connect to Firebase. Some features may not work.", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e(TAG, "Firebase connection test cancelled: " + error.getMessage());
+                Toast.makeText(context, "Firebase connection error: " + error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     /**
@@ -62,13 +131,16 @@ public class FirebaseManager {
                         
                         // Set the Firebase ID
                         alert.setFirebaseId(alertSnapshot.getKey());
+                        Log.d(TAG, "Processing alert with Firebase ID: " + alertSnapshot.getKey());
                         
                         // Get all the alert data
                         if (alertSnapshot.hasChild("userId"))
                             alert.setUserId(Integer.parseInt(alertSnapshot.child("userId").getValue().toString()));
                         
-                        if (alertSnapshot.hasChild("userName"))
+                        if (alertSnapshot.hasChild("userName")) {
                             alert.setUserName(alertSnapshot.child("userName").getValue().toString());
+                            Log.d(TAG, "Alert from user: " + alert.getUserName());
+                        }
                         
                         if (alertSnapshot.hasChild("userEmail"))
                             alert.setUserEmail(alertSnapshot.child("userEmail").getValue().toString());
@@ -85,10 +157,12 @@ public class FirebaseManager {
                         if (alertSnapshot.hasChild("timestamp"))
                             alert.setTimestamp(alertSnapshot.child("timestamp").getValue().toString());
                         
-                        if (alertSnapshot.hasChild("status"))
+                        if (alertSnapshot.hasChild("status")) {
                             alert.setStatus(alertSnapshot.child("status").getValue().toString());
-                        else
+                            Log.d(TAG, "Alert status: " + alert.getStatus());
+                        } else {
                             alert.setStatus("active");
+                        }
                         
                         // Only add active alerts to the list
                         if ("active".equals(alert.getStatus())) {
@@ -96,7 +170,7 @@ public class FirebaseManager {
                             Log.d(TAG, "Added active alert from Firebase: " + alert.getUserName());
                         }
                     } catch (Exception e) {
-                        Log.e(TAG, "Error parsing alert: " + e.getMessage());
+                        Log.e(TAG, "Error parsing alert: " + e.getMessage(), e);
                     }
                 }
                 
@@ -113,6 +187,7 @@ public class FirebaseManager {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Log.e(TAG, "Firebase Database error: " + databaseError.getMessage());
+                Toast.makeText(context, "Firebase error: " + databaseError.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -139,8 +214,12 @@ public class FirebaseManager {
                 Log.d(TAG, "SOS Alert added to Firebase successfully");
                 // Update the local database with the Firebase ID
                 localDbHelper.updateFirebaseId(alert.getId(), alertKey);
+                Toast.makeText(context, "SOS alert sent successfully!", Toast.LENGTH_SHORT).show();
             })
-            .addOnFailureListener(e -> Log.e(TAG, "Failed to add SOS Alert to Firebase: " + e.getMessage()));
+            .addOnFailureListener(e -> {
+                Log.e(TAG, "Failed to add SOS Alert to Firebase: " + e.getMessage(), e);
+                Toast.makeText(context, "Failed to send SOS alert: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            });
     }
 
     /**
@@ -151,8 +230,14 @@ public class FirebaseManager {
             Log.d(TAG, "Updating alert status in Firebase: " + firebaseId + " to " + status);
             
             sosAlertsRef.child(firebaseId).child("status").setValue(status)
-                .addOnSuccessListener(aVoid -> Log.d(TAG, "SOS Alert status updated in Firebase"))
-                .addOnFailureListener(e -> Log.e(TAG, "Failed to update SOS Alert status in Firebase: " + e.getMessage()));
+                .addOnSuccessListener(aVoid -> {
+                    Log.d(TAG, "SOS Alert status updated in Firebase");
+                    Toast.makeText(context, "Alert status updated", Toast.LENGTH_SHORT).show();
+                })
+                .addOnFailureListener(e -> {
+                    Log.e(TAG, "Failed to update SOS Alert status in Firebase: " + e.getMessage(), e);
+                    Toast.makeText(context, "Failed to update alert status: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                });
         }
     }
 
@@ -186,7 +271,7 @@ public class FirebaseManager {
                     }
                 }
             } catch (Exception e) {
-                Log.e(TAG, "Error syncing with local database: " + e.getMessage());
+                Log.e(TAG, "Error syncing with local database: " + e.getMessage(), e);
             }
         }).start();
     }
