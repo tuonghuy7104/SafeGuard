@@ -272,7 +272,7 @@ public class StaffHome extends AppCompatActivity implements OnMapReadyCallback {
         // Call emergency button - gọi 911
         btnCallEmergency.setOnClickListener(v -> {
             if (checkCallPermission()) {
-                makePhoneCall("911");
+                makePhoneCall("113");
             } else {
                 requestCallPermission();
             }
