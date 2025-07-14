@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -72,35 +73,40 @@ public class StaffHome extends AppCompatActivity implements OnMapReadyCallback {
     }
 
     /**
-     * Thiết lập listener để lắng nghe các thay đổi từ Firebase
+     * Set up Firebase listener to receive new alerts
      */
     private void setupFirebaseListener() {
+        Log.d("StaffHome", "Setting up Firebase alerts listener");
+        
         firebaseManager.listenForAlerts(alerts -> {
-            // Cập nhật UI khi có thay đổi từ Firebase
+            // Update UI when changes come from Firebase
             runOnUiThread(() -> {
+                Log.d("StaffHome", "Received " + alerts.size() + " alerts from Firebase");
+                
                 // Clear existing views
                 notificationList.removeAllViews();
                 
                 if (alerts.isEmpty()) {
-                    // Hiển thị thông báo không có alerts
+                    // Show no alerts message
                     if (tvNoAlerts != null) {
                         tvNoAlerts.setVisibility(View.VISIBLE);
                     }
                     return;
                 }
                 
-                // Ẩn thông báo không có alerts
+                // Hide no alerts message
                 if (tvNoAlerts != null) {
                     tvNoAlerts.setVisibility(View.GONE);
                 }
 
-                // Tạo view cho từng alert
+                // Create view for each alert
                 for (SosAlertDatabaseHelper.SosAlert alert : alerts) {
                     View alertView = createSosAlertView(alert);
                     notificationList.addView(alertView);
+                    Log.d("StaffHome", "Added alert to UI: " + alert.getUserName());
                 }
                 
-                // Hiển thị tất cả các điểm trên bản đồ
+                // Show all points on the map
                 if (googleMap != null) {
                     showAlertsOnMap(alerts);
                 }
@@ -288,7 +294,7 @@ public class StaffHome extends AppCompatActivity implements OnMapReadyCallback {
      * Hiển thị dialog xác nhận xóa alert
      */
     private void showDismissDialog(SosAlertDatabaseHelper.SosAlert alert) {
-        new AlertDialog.Builder(this)
+        new AlertDialog.Builder(this, R.style.AlertDialogCustom)
                 .setTitle("Dismiss Alert")
                 .setMessage("Are you sure you want to dismiss this alert? This action cannot be undone.")
                 .setPositiveButton("Dismiss", (dialog, which) -> {
@@ -314,7 +320,7 @@ public class StaffHome extends AppCompatActivity implements OnMapReadyCallback {
      * Hiển thị dialog xác nhận hỗ trợ
      */
     private void showAssistDialog(SosAlertDatabaseHelper.SosAlert alert) {
-        new AlertDialog.Builder(this)
+        new AlertDialog.Builder(this, R.style.AlertDialogCustom)
                 .setTitle("Mark as Assisted")
                 .setMessage("Are you sure you want to mark this alert as assisted? This will resolve the case.")
                 .setPositiveButton("Mark Assisted", (dialog, which) -> {

@@ -13,13 +13,20 @@ public class SafeGuardApplication extends Application {
     public void onCreate() {
         super.onCreate();
         
-        // Initialiser Firebase
+        // Initialize Firebase only once
         try {
-            FirebaseApp.initializeApp(this);
+            // Initialize Firebase only if not already initialized
+            if (FirebaseApp.getApps(this).isEmpty()) {
+                FirebaseApp.initializeApp(this);
+                Log.d(TAG, "Firebase initialized successfully");
+            } else {
+                Log.d(TAG, "Firebase was already initialized");
+            }
+            
+            // Enable disk persistence (allow offline capabilities)
             FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-            Log.d(TAG, "Firebase initialized successfully");
         } catch (Exception e) {
-            Log.e(TAG, "Error initializing Firebase: " + e.getMessage());
+            Log.e(TAG, "Error initializing Firebase: " + e.getMessage(), e);
         }
     }
 } 

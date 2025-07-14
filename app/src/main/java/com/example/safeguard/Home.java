@@ -822,7 +822,7 @@ public class Home extends AppCompatActivity implements OnMapReadyCallback {
                 }
                 cursor.close();
                 
-                // Save SOS alert to database for staff
+                // Save SOS alert to local database for staff
                 long localAlertId = sosAlertDbHelper.addSosAlert(
                     userId, 
                     userName, 
@@ -835,11 +835,12 @@ public class Home extends AppCompatActivity implements OnMapReadyCallback {
                 if (localAlertId != -1) {
                     Log.d("SOSApp", "SOS Alert saved to local database with ID: " + localAlertId);
                     
-                    // Lấy alert vừa tạo và gửi đến Firebase
-                    List<SosAlertDatabaseHelper.SosAlert> unsyncedAlerts = sosAlertDbHelper.getUnsyncedAlerts();
-                    for (SosAlertDatabaseHelper.SosAlert alert : unsyncedAlerts) {
+                    // Get the alert we just created with all its data
+                    List<SosAlertDatabaseHelper.SosAlert> alerts = sosAlertDbHelper.getActiveSosAlerts();
+                    for (SosAlertDatabaseHelper.SosAlert alert : alerts) {
                         if (alert.getId() == localAlertId) {
-                            // Gửi alert lên Firebase
+                            // Send alert to Firebase - this will sync with all devices
+                            Log.d("SOSApp", "Sending alert to Firebase: " + alert.getUserName());
                             firebaseManager.addSosAlert(alert);
                             break;
                         }
