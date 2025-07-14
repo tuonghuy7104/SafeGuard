@@ -7,64 +7,54 @@
     android:background="@color/white"
     tools:context=".StaffHome">
 
-    <!-- Header -->
+    <!-- Map View - Move to the top so it's behind everything -->
+
+    <!-- Header - Now transparent and overlaid on the map -->
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="330dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="-2dp" />
+
     <RelativeLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/orange"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:background="@android:color/transparent"
+        android:layout_alignParentTop="true">
 
-        <TextView
-            android:id="@+id/textViewTitle"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SOS Alerts Dashboard"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:layout_alignParentStart="true"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btnRefresh"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Refresh"
-            android:backgroundTint="@color/light_yellow"
-            android:textColor="@color/black"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_alignParentEnd="true" />
+            <Button
+                android:id="@+id/btnRefresh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Refresh"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/dark_grey"
+                android:padding="8dp"
+                android:layout_marginEnd="8dp"
+                android:textSize="12sp"
+                android:alpha="0.8" />
 
-        <Button
-            android:id="@+id/btnTestAlert"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Send Test Alert"
-            android:backgroundTint="@color/orange"
-            android:textColor="@color/white"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_below="@id/btnRefresh"
-            android:layout_alignParentEnd="true" />
-
-        <Button
-            android:id="@+id/btn_logout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:text="Logout"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/dark_grey"
-            android:padding="8dp" />
+            <Button
+                android:id="@+id/btn_logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/dark_grey"
+                android:padding="8dp"
+                android:text="Logout"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:alpha="0.8" />
+        </LinearLayout>
     </RelativeLayout>
-
-    <!-- Map View -->
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/mapView"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_below="@id/header" />
 
     <!-- Alerts Section -->
     <TextView
@@ -95,8 +85,9 @@
     <!-- Alerts List -->
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="404dp"
         android:layout_below="@id/textViewAlertsTitle"
+        android:layout_marginTop="38dp"
         android:padding="8dp">
 
         <LinearLayout

@@ -94,13 +94,7 @@ public class StaffHome extends AppCompatActivity implements OnMapReadyCallback {
             });
         }
         
-        // Add test alert button
-        Button btnTestAlert = findViewById(R.id.btnTestAlert);
-        if (btnTestAlert != null) {
-            btnTestAlert.setOnClickListener(v -> {
-                createTestAlert();
-            });
-        }
+        // Remove the test alert button code since it's been removed from the layout
     }
 
     /**
@@ -507,7 +501,7 @@ public class StaffHome extends AppCompatActivity implements OnMapReadyCallback {
             showAssistDialog(alert);
         });
 
-        // Call emergency button - gọi 911
+        // Call emergency button - gọi 113
         btnCallEmergency.setOnClickListener(v -> {
             if (checkCallPermission()) {
                 makePhoneCall("113");
